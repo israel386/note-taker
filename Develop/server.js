@@ -1,14 +1,12 @@
-const fs = rewuire('fs');
+const fs = require('fs');
 const path = require('path');
-const express = require('.express');
+const express = require('express');
 const dbJson = require('./db/db.json');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-// parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
-// parse incoming JSON data
 app.use(express.json());
 app.use(express.static("public"));
 
@@ -38,7 +36,7 @@ app.get('*', (req, res) => {
 });
 
 app.delete("/api/notes/:id", function (req, res) {
-    console.log(uuidv1())
+    console.log(parsedNotes())
     console.log("Req.params:", req.params);
     let removeNotes = parseInt(req.params.id);
     console.log(removeNotes);
